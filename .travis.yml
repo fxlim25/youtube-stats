@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+  - 16
+
+services:
+  - docker
+
+before_install: # predeployment / staging
+  - docker build -t tomlim25/examplereactapp -f Dockerfile.dev .
+
+script: # deployment / staging
+  - docker run tomlim25/examplereactapp npm run test -- --coverage
